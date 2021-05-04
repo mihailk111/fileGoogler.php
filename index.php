@@ -2,7 +2,6 @@
 
 require("./fileGoogler.php");
 
-
 $google = new fileGoogler("passwords", "xlsx");
 
 echo "\n";

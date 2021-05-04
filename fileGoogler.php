@@ -23,7 +23,7 @@ class fileGoogler
     public function find($pages_amount)
     {
         $pb = new ProgressBar(new StreamOutput(STDOUT), $pages_amount);        
-
+        $pb->setFormat("verbose");
         $pb->start();
 
         $url = "https://google.com/search?q={$this->search_expression}+filetype:{$this->fileType}&client=ubuntu";
@@ -49,7 +49,11 @@ class fileGoogler
 
         $pb->finish();
 
-        return array_merge(... $all_files) ;
+        $merged = array_merge(...$all_files);
+        $string_form = implode("", $merged);
+
+        file_put_contents($this->search_expression . "-" . $this->fileType . "-" . $pages_amount,$string_form );
+        return $merged;
         
     }
 
