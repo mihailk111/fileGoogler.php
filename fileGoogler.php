@@ -37,22 +37,19 @@ class fileGoogler
 
             array_push($all_files, $links);
 
-            $url = $this->nextUrl($result); 
+            try {
+                $url = $this->nextUrl($result); 
+            } catch (Exception $e) {
 
-            // file_put_contents("test.html", file_get_contents($url));
-            // die;
-            // try {
-            //     $url = $this->nextUrl($result); 
-            // } catch (Exception $e) {
-            //     if ($e->getCode() === 10) break;
-            // }
+                if ($e->getCode() === 10) break;
+            }
 
             $pb->advance(); 
         }
 
         $pb->finish();
+
         return array_merge(... $all_files) ;
-        // return $all_files;
         
     }
 
@@ -86,12 +83,13 @@ class fileGoogler
         $dom->loadStr($html);
         $data = $dom->find('footer div div div a');
 
-        // if (!isset($data[count($data)-1]->href)) {
-        //     throw new Exception("lastPage", 10);
-        // }
+        $href = $data[count($data)-1]->href;
+
+        if (!isset($href)) {
+            throw new Exception("lastPage", 10);
+        }
 
         $next_url = "https://google.com" . $data[count($data)-1]->href;
-        // dd($next_url);
         return str_replace('&amp;', '&', $next_url);
     }
 }

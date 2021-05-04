@@ -5,7 +5,8 @@ require("./fileGoogler.php");
 
 $google = new fileGoogler("passwords", "xlsx");
 
-print_r($google->find(3));
+echo "\n";
+print_r($google->find(30));
 
 
 function dd($in)
