@@ -50,7 +50,7 @@ class fileGoogler
         $pb->finish();
 
         $merged = array_merge(...$all_files);
-        $string_form = implode("", $merged);
+        $string_form = implode("\n", $merged);
 
         file_put_contents($this->search_expression . "-" . $this->fileType . "-" . $pages_amount,$string_form );
         return $merged;
