@@ -4,7 +4,7 @@ require_once("./fileGoogler.php");
 
 use MK11\fileGoogler;
 
-$exp        = "\"слава украине\"";
+$exp        = "\"hello world\"";
 $file_type  = "pdf";
 
 
