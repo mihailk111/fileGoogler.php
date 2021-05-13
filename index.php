@@ -1,18 +1,18 @@
 <?php
-use PHPHtmlParser\Dom;
 
-require("./fileGoogler.php");
+require_once("./fileGoogler.php");
 
-$exp        = "никита ветров казань";
-$file_type  = "txt";
+use MK11\fileGoogler;
 
+$exp        = "\"слава украине\"";
+$file_type  = "pdf";
 
-$exp = urlencode($exp);
 
 
 $google = new fileGoogler($exp, $file_type);
+
 echo "\n";
-print_r($google->find(10));
+print_r($google->find(3));
 
 
 function dd($in)
